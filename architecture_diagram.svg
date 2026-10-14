@@ -1,0 +1,195 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#334155"/>
+    </marker>
+    <style>
+      .h{font-size:20px;font-weight:700;fill:#0f172a}
+      .t{font-size:15px;font-weight:700;fill:#0f172a}
+      .s{font-size:13px;fill:#334155}
+      .m{font-size:12px;fill:#475569}
+      .ln{stroke:#334155;stroke-width:2;fill:none}
+      .box{fill:#ffffff;stroke:#94a3b8;stroke-width:1.2}
+    </style>
+  </defs>
+  <rect width="1600" height="1000" fill="#ffffff"/>
+
+  <text x="800" y="45" text-anchor="middle" font-size="28" font-weight="700" fill="#0f172a">NeuroFlow AI — System Architecture</text>
+  <text x="800" y="72" text-anchor="middle" class="s">Stroke-history screening over CDC BRFSS · Model B (21 features) served · not a diagnosis</text>
+
+  <!-- USER -->
+  <rect x="40" y="95" width="400" height="70" rx="10" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
+  <text x="240" y="125" text-anchor="middle" class="t">User (web browser)</text>
+  <text x="240" y="148" text-anchor="middle" class="s">answers 21 survey questions, views result</text>
+  <line x1="240" y1="165" x2="240" y2="203" class="ln" marker-start="url(#a)" marker-end="url(#a)"/>
+
+  <!-- FRONTEND -->
+  <rect x="40" y="205" width="400" height="735" rx="12" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="60" y="235" class="h">Frontend</text>
+  <text x="60" y="256" class="s">React 19 + Vite + Tailwind · frontend/src/ · :5173</text>
+
+  <rect x="60" y="275" width="360" height="62" rx="8" class="box"/>
+  <text x="75" y="298" class="t">Form.jsx</text>
+  <text x="75" y="320" class="s">3-step questionnaire, per-step validation</text>
+
+  <rect x="60" y="347" width="360" height="80" rx="8" class="box"/>
+  <text x="75" y="370" class="t">api.js</text>
+  <text x="75" y="391" class="s">computeBmi(weight, height) — BMI never asked</text>
+  <text x="75" y="411" class="s">buildPayload → 21 features in model order</text>
+
+  <rect x="60" y="437" width="360" height="100" rx="8" class="box"/>
+  <text x="75" y="460" class="t">Result.jsx</text>
+  <text x="75" y="481" class="s">score % · Flagged / Not flagged</text>
+  <text x="75" y="501" class="s">neutral score bar with threshold mark</text>
+  <text x="75" y="521" class="s">SHAP bars (up / down) + optional narrative</text>
+
+  <rect x="60" y="547" width="360" height="62" rx="8" class="box"/>
+  <text x="75" y="570" class="t">CausalDAG.jsx</text>
+  <text x="75" y="592" class="s">why 7 survey questions are excluded</text>
+
+  <rect x="60" y="619" width="360" height="62" rx="8" class="box"/>
+  <text x="75" y="642" class="t">Drift.jsx  (#drift)</text>
+  <text x="75" y="664" class="s">PSI per feature + prediction-drift panel</text>
+
+  <rect x="60" y="691" width="360" height="62" rx="8" class="box"/>
+  <text x="75" y="714" class="t">copy.js</text>
+  <text x="75" y="736" class="s">all UI text; banned-phrase rules enforced</text>
+
+  <rect x="60" y="763" width="360" height="62" rx="8" class="box"/>
+  <text x="75" y="786" class="t">App.jsx · Rail.jsx</text>
+  <text x="75" y="808" class="s">page switching, step rail, footer disclaimer</text>
+
+  <text x="240" y="868" text-anchor="middle" class="m">Footer on every page:</text>
+  <text x="240" y="888" text-anchor="middle" class="m">"Screening estimate from self-reported</text>
+  <text x="240" y="906" text-anchor="middle" class="m">survey data, not a diagnosis."</text>
+
+  <!-- FRONTEND <-> BACKEND -->
+  <line x1="440" y1="245" x2="518" y2="245" class="ln" marker-end="url(#a)"/>
+  <line x1="518" y1="295" x2="442" y2="295" class="ln" marker-end="url(#a)"/>
+  <text x="479" y="235" text-anchor="middle" class="m">POST</text>
+  <text x="479" y="275" text-anchor="middle" class="m">JSON</text>
+  <text x="479" y="318" text-anchor="middle" class="m">/api/v1</text>
+
+  <!-- BACKEND -->
+  <rect x="520" y="95" width="580" height="845" rx="12" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+  <text x="540" y="125" class="h">Backend</text>
+  <text x="540" y="146" class="s">Python FastAPI · backend/ · :8000 (runs in WSL)</text>
+
+  <rect x="540" y="160" width="540" height="170" rx="8" class="box"/>
+  <text x="555" y="183" class="t">main.py — API routes</text>
+  <text x="555" y="206" class="s">GET  /api/v1/schema   → 21 features + valid ranges</text>
+  <text x="555" y="227" class="s">POST /api/v1/predict  → validate → model → store → respond</text>
+  <text x="555" y="248" class="s">POST /api/v1/narrative → guarded LLM sentence (or null)</text>
+  <text x="555" y="269" class="s">GET  /api/v1/drift    → PSI report</text>
+  <text x="555" y="290" class="s">GET  /api/v1/assessments · GET /health</text>
+  <text x="555" y="314" class="m">display probability capped at 0.99 (isotonic saturation)</text>
+
+  <rect x="540" y="345" width="540" height="55" rx="8" class="box"/>
+  <text x="555" y="367" class="t">schema.py — input validation</text>
+  <text x="555" y="389" class="s">Pydantic model generated from model_config.json; extra fields → 422</text>
+
+  <!-- model.py -->
+  <rect x="540" y="415" width="540" height="225" rx="8" fill="#ffffff" stroke="#16a34a" stroke-width="2"/>
+  <text x="555" y="438" class="t">model.py — ML inference (Model B only, loaded once)</text>
+
+  <rect x="550" y="455" width="96" height="62" rx="6" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="598" y="480" text-anchor="middle" class="t" font-size="13">1 Reorder</text>
+  <text x="598" y="500" text-anchor="middle" class="m">21 columns</text>
+  <rect x="656" y="455" width="96" height="62" rx="6" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="704" y="480" text-anchor="middle" class="t" font-size="13">2 Preprocess</text>
+  <text x="704" y="500" text-anchor="middle" class="m">one-hot</text>
+  <rect x="762" y="455" width="96" height="62" rx="6" fill="#bbf7d0" stroke="#15803d" stroke-width="1.6"/>
+  <text x="810" y="480" text-anchor="middle" class="t" font-size="13">XGBoost</text>
+  <text x="810" y="500" text-anchor="middle" class="m">raw score</text>
+  <rect x="868" y="455" width="96" height="62" rx="6" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="916" y="480" text-anchor="middle" class="t" font-size="13">3 Calibrate</text>
+  <text x="916" y="500" text-anchor="middle" class="m">isotonic</text>
+  <rect x="974" y="455" width="96" height="62" rx="6" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="1022" y="480" text-anchor="middle" class="t" font-size="13">4 Threshold</text>
+  <text x="1022" y="500" text-anchor="middle" class="m">p ≥ 0.0278</text>
+  <line x1="646" y1="486" x2="654" y2="486" class="ln" marker-end="url(#a)"/>
+  <line x1="752" y1="486" x2="760" y2="486" class="ln" marker-end="url(#a)"/>
+  <line x1="858" y1="486" x2="866" y2="486" class="ln" marker-end="url(#a)"/>
+  <line x1="964" y1="486" x2="972" y2="486" class="ln" marker-end="url(#a)"/>
+
+  <line x1="810" y1="517" x2="810" y2="553" class="ln" marker-end="url(#a)"/>
+  <rect x="740" y="555" width="330" height="72" rx="6" fill="#fef9c3" stroke="#ca8a04"/>
+  <text x="755" y="577" class="t" font-size="13">TreeSHAP explainer</text>
+  <text x="755" y="597" class="m">on raw log-odds · one-hot columns folded back</text>
+  <text x="755" y="615" class="m">to source feature · top-5 by |value|</text>
+  <text x="555" y="560" class="s">Output:</text>
+  <text x="555" y="580" class="m">• calibrated probability</text>
+  <text x="555" y="598" class="m">• flagged (true / false)</text>
+  <text x="555" y="616" class="m">• top-5 contributions</text>
+
+  <rect x="540" y="655" width="540" height="90" rx="8" class="box"/>
+  <text x="555" y="678" class="t">narrative.py — guarded LLM sentence</text>
+  <text x="555" y="699" class="s">sends only feature names + up/down · strict system prompt</text>
+  <text x="555" y="719" class="s">banned-word post-filter · 5 s budget · failure → null</text>
+  <text x="555" y="737" class="m">page never waits: SHAP bars always render</text>
+
+  <rect x="540" y="760" width="540" height="75" rx="8" class="box"/>
+  <text x="555" y="783" class="t">drift.py — Population Stability Index</text>
+  <text x="555" y="804" class="s">PSI = Σ (A − E)·ln(A / E) vs training reference bins</text>
+  <text x="555" y="824" class="m">bands: &lt;0.1 stable · 0.1–0.25 moderate · &gt;0.25 significant · min 30 rows</text>
+
+  <rect x="540" y="850" width="540" height="75" rx="8" class="box"/>
+  <text x="555" y="873" class="t">db.py — PostgreSQL access (plain SQL)</text>
+  <text x="555" y="894" class="s">insert assessment · read recent · read for drift</text>
+  <text x="555" y="914" class="m">no names / emails / IPs — random UUID per row</text>
+
+  <!-- RIGHT COLUMN -->
+  <!-- Training -->
+  <rect x="1180" y="95" width="380" height="135" rx="12" fill="#f8fafc" stroke="#64748b" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="1200" y="122" class="t">Offline training (Google Colab)</text>
+  <text x="1200" y="145" class="s">CDC BRFSS · 2.17M respondents</text>
+  <text x="1200" y="165" class="s">train 2015/17/19 · val 2021 (A / B) · test 2023</text>
+  <text x="1200" y="185" class="s">class weighting (no SMOTE) · temporal split</text>
+  <text x="1200" y="207" class="m">Model A (28 feat.) vs Model B (21 feat.)</text>
+  <line x1="1370" y1="230" x2="1370" y2="273" class="ln" marker-end="url(#a)"/>
+  <text x="1380" y="257" class="m">export bundle</text>
+
+  <!-- Bundle -->
+  <rect x="1180" y="275" width="380" height="300" rx="12" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+  <text x="1200" y="303" class="h">Model bundle  (models/)</text>
+  <rect x="1200" y="318" width="340" height="150" rx="8" class="box"/>
+  <text x="1215" y="341" class="t">stroke_model.joblib</text>
+  <text x="1215" y="363" class="s">model_B (served): preprocessor,</text>
+  <text x="1215" y="382" class="s">XGBoost model, isotonic calibrator,</text>
+  <text x="1215" y="401" class="s">threshold 0.0278, 21 feature names</text>
+  <text x="1215" y="422" class="m">model_A: comparison only — never served</text>
+  <text x="1215" y="441" class="m">meta: years, pinned library versions</text>
+  <text x="1215" y="459" class="m">verified by verify_model.py (diff 1.5e-8)</text>
+  <rect x="1200" y="478" width="340" height="82" rx="8" class="box"/>
+  <text x="1215" y="501" class="t">model_config.json</text>
+  <text x="1215" y="522" class="s">schema: type / min / max per feature</text>
+  <text x="1215" y="542" class="s">reference_bins: training distribution</text>
+
+  <!-- arrows backend <-> bundle -->
+  <line x1="1198" y1="372" x2="1100" y2="372" class="ln" marker-end="url(#a)"/>
+  <text x="1140" y="364" text-anchor="middle" class="m">ranges</text>
+  <line x1="1198" y1="420" x2="1082" y2="440" class="ln" marker-end="url(#a)"/>
+  <text x="1140" y="418" text-anchor="middle" class="m">load</text>
+  <line x1="1198" y1="530" x2="1100" y2="790" class="ln" marker-end="url(#a)"/>
+  <text x="1182" y="603" class="m">ref. bins</text>
+
+  <!-- OpenRouter -->
+  <rect x="1180" y="625" width="380" height="120" rx="12" fill="#faf5ff" stroke="#9333ea" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="1200" y="652" class="t">OpenRouter LLM  (optional)</text>
+  <text x="1200" y="675" class="s">Claude Haiku 4.5 → fallback Gemini 2.5 Flash</text>
+  <text x="1200" y="696" class="s">needs OPENROUTER_API_KEY in .env</text>
+  <text x="1200" y="717" class="m">absent / failing → bars-only result page</text>
+  <line x1="1100" y1="700" x2="1178" y2="700" class="ln" marker-start="url(#a)" marker-end="url(#a)"/>
+
+  <!-- Postgres -->
+  <rect x="1180" y="800" width="380" height="140" rx="12" fill="#f0f9ff" stroke="#0284c7" stroke-width="2"/>
+  <text x="1200" y="828" class="t">PostgreSQL 17 — table: assessments</text>
+  <text x="1200" y="851" class="s">id (UUID) · created_at · inputs (JSONB)</text>
+  <text x="1200" y="871" class="s">probability · flagged · threshold</text>
+  <text x="1200" y="891" class="s">model_version · shap_top · source</text>
+  <text x="1200" y="915" class="m">backend/sql/001_init.sql</text>
+  <line x1="1100" y1="885" x2="1178" y2="885" class="ln" marker-start="url(#a)" marker-end="url(#a)"/>
+
+  <!-- legend -->
+  <text x="800" y="975" text-anchor="middle" class="m">Solid border = runs in the app · dashed border = offline or optional external service · arrows show data flow</text>
+</svg>

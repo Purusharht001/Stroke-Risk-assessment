@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($u = \\(Get-Content .env | Where-Object { $_ -match '^DATABASE_URL=' }\\) -replace '^DATABASE_URL=',''; if \\(-not $u\\) { \"DATABASE_URL not set in .env\" } else { & \"C:\\\\Program Files\\\\PostgreSQL\\\\17\\\\bin\\\\psql.exe\" $u -tAc \"select 1\" })",
+      "PowerShell($u = \\(Get-Content .env | Where-Object { $_ -match '^DATABASE_URL=' }\\) -replace '^DATABASE_URL=',''; $i = $u.LastIndexOf\\('@'\\); $pre = $u.Substring\\(0,$i\\); $k = $pre.IndexOf\\(':', 13\\); $fixed = $pre.Substring\\(0,$k+1\\) + $pre.Substring\\($k+1\\).Replace\\('@','%40'\\) + $u.Substring\\($i\\); & \"C:\\\\Program Files\\\\PostgreSQL\\\\17\\\\bin\\\\psql.exe\" $fixed -tAc \"select 1\")",
+      "PowerShell(wsl -d Ubuntu -- bash -lc \"which uv pip3; python3 -c 'import venv, ensurepip; print\\(\\\\\"venv ok\\\\\"\\)'\")",
+      "Bash(wsl.exe -d Ubuntu -- bash -lc 'which uv pip3; python3 -c \"import venv, ensurepip; print\\(\\\\\"venv ok\\\\\"\\)\"')",
+      "Bash(wsl.exe -d Ubuntu --cd /mnt/d/sem7/healthcare/neuroFlow -- bash -lc 'export UV_LINK_MODE=copy; ~/.local/bin/uv venv backend/venv --python 3.12 && ~/.local/bin/uv pip install --python backend/venv/bin/python -r backend/requirements.txt')",
+      "Bash(wsl.exe -d Ubuntu -- bash -lc 'cd /mnt/d/sem7/healthcare/neuroFlow && export UV_LINK_MODE=copy && ~/.local/bin/uv venv backend/venv --python 3.12 && ~/.local/bin/uv pip install --python backend/venv/bin/python -r backend/requirements.txt')",
+      "Bash(wsl.exe -d Ubuntu -- bash -lc 'cd /mnt/d/sem7/healthcare/neuroFlow && export UV_LINK_MODE=copy && ~/.local/bin/uv venv backend/.venv --python 3.12 && ~/.local/bin/uv pip install --python backend/.venv/bin/python -r backend/requirements.txt')",
+      "Bash(wsl.exe -d Ubuntu -- bash -lc 'cd /mnt/d/sem7/healthcare/neuroFlow && backend/.venv/bin/python backend/verify_model.py; echo \"EXIT=$?\"')",
+      "Bash(wsl.exe -d *)",
+      "Bash(wsl.exe -d Ubuntu -- bash -lc 'ip route show default; wslinfo --networking-mode 2>/dev/null; timeout 3 bash -c \"</dev/tcp/$\\(ip route show default | awk \"{print \\\\$3}\"\\)/5432\" && echo PORT_OPEN || echo PORT_CLOSED' 2>&1; cat /c/Users/PC/.wslconfig 2>/dev/null || echo \"no .wslconfig\")",
+      "Read(//c/Users/PC/**)",
+      "Read(//c/Program Files/PostgreSQL/17/data/**)",
+      "PowerShell(wsl --shutdown)",
+      "PowerShell(wsl -d Ubuntu -- wslinfo --networking-mode)",
+      "Bash(python -c \"import json;c=json.load\\(open\\('models/model_config.json'\\)\\);print\\(list\\(c.keys\\(\\)\\)\\);import itertools;print\\({k:v for k,v in list\\(c['schema'].items\\(\\)\\)[:6]}\\)\")",
+      "Bash(python -c ' *)",
+      "Bash(wsl -e bash -lc 'cd /mnt/d/sem7/healthcare/neuroFlow && backend/.venv/bin/python -c \" *)",
+      "Bash(wsl -e bash -lc \"cd /mnt/d/sem7/healthcare/neuroFlow && backend/.venv/bin/uvicorn main:app --app-dir backend --port 8000 > /tmp/nf_uvicorn.log 2>&1\")",
+      "Bash(wsl -e bash -lc \"cd /mnt/d/sem7/healthcare/neuroFlow && backend/.venv/bin/python /mnt/c/Users/PC/AppData/Local/Temp/claude/d--sem7-healthcare-neuroFlow/19631ba6-1db5-4068-9d94-3acf2b588fdd/scratchpad/accept.py; echo ---; tail -5 /tmp/nf_uvicorn.log\")",
+      "PowerShell(node --version; npm --version; try { \\(Invoke-WebRequest -UseBasicParsing http://localhost:8000/health -TimeoutSec 5\\).Content } catch { \"backend: \" + $_.Exception.Message }; Test-Path frontend; Get-ChildItem logs, backend | Select-Object Name)",
+      "PowerShell(Get-ChildItem -Force frontend -Recurse -Depth 1 -Exclude node_modules | Where-Object { $_.FullName -notmatch 'node_modules' } | Select-Object FullName, Length)",
+      "Bash(wsl.exe -e bash -lc \"cd /mnt/d/sem7/healthcare/neuroFlow && nohup backend/.venv/bin/uvicorn main:app --app-dir backend --port 8000 > /tmp/nf_backend.log 2>&1 & sleep 8; curl -s localhost:8000/health; echo; tail -5 /tmp/nf_backend.log\")",
+      "PowerShell(Start-Process wsl.exe -ArgumentList '-e','bash','-lc','cd /mnt/d/sem7/healthcare/neuroFlow && backend/.venv/bin/uvicorn main:app --app-dir backend --port 8000 > /tmp/nf_backend.log 2>&1' -WindowStyle Hidden; Start-Sleep 12; try { \\(Invoke-WebRequest -UseBasicParsing http://localhost:8000/health -TimeoutSec 5\\).Content } catch { \"fail: \" + $_.Exception.Message })",
+      "PowerShell(Start-Sleep 10; wsl.exe -e bash -lc \"cat /tmp/nf_backend.log; curl -s localhost:8000/health\"; try { \\(Invoke-WebRequest -UseBasicParsing http://localhost:8000/health -TimeoutSec 5\\).Content } catch { \"win fail: \" + $_.Exception.Message })",
+      "PowerShell(try { \\(Invoke-WebRequest -UseBasicParsing http://localhost:8000/api/v1/schema -TimeoutSec 20\\).Content } catch { \"win fail: \" + $_.Exception.Message })",
+      "PowerShell(try { \\(Invoke-WebRequest -UseBasicParsing http://127.0.0.1:8000/health -TimeoutSec 10\\).Content } catch { \"fail 127: \" + $_.Exception.Message }; Get-Content $env:USERPROFILE\\\\.wslconfig)",
+      "PowerShell(\\(Invoke-WebRequest -UseBasicParsing http://127.0.0.1:8000/api/v1/schema -TimeoutSec 10\\).Content)",
+      "PowerShell(npm create vite@latest frontend -- --template react --no-interactive 2>&1 | Select-Object -Last 5; cd frontend; npm install 2>&1 | Select-Object -Last 3; npm install -D tailwindcss @tailwindcss/vite 2>&1 | Select-Object -Last 3; Get-ChildItem -Recurse -File -Exclude node_modules | Where-Object { $_.FullName -notmatch 'node_modules' } | Select-Object -ExpandProperty FullName; Get-Content package.json)",
+      "Bash(rm -rf frontend)",
+      "Bash(npm create *)",
+      "Bash(npm install *)",
+      "Bash(curl -s -X POST 127.0.0.1:8000/api/v1/predict -H 'content-type: application/json' -d '{\"age\":60,\"high_bp\":1,\"chd_or_mi\":0,\"diabetes\":0,\"kidney_disease\":0,\"high_chol\":1,\"smoker_status\":4,\"bmi\":22.86,\"copd\":0,\"depression\":0,\"arthritis\":0,\"heavy_drink\":0,\"binge_drink\":0,\"is_female\":1,\"education\":3,\"marital\":1,\"own_home\":1,\"veteran\":0,\"urban_rural\":1,\"has_insurance\":1,\"cost_barrier\":0}')",
+      "Bash(curl -s -X POST 127.0.0.1:8000/api/v1/predict -H 'content-type: application/json' -d '{\"age\":10}')",
+      "Bash(sed -i 's#<title>frontend</title>#<title>NeuroFlow screening</title>#' index.html)",
+      "Bash(npm run *)",
+      "PowerShell($edge = \"${env:ProgramFiles\\(x86\\)}\\\\Microsoft\\\\Edge\\\\Application\\\\msedge.exe\"; $dom = & $edge --headless=new --disable-gpu --virtual-time-budget=8000 --dump-dom http://127.0.0.1:5173/ 2>$null | Out-String; \"footer present: \" + $dom.Contains\\('Screening estimate from self-reported survey data, not a diagnosis.'\\); \"step label: \" + $dom.Contains\\('Step 1 of 3'\\); \"inputs: \" + \\([regex]::Matches\\($dom, 'name=\"\\(\\\\w+\\)\"'\\) | ForEach-Object { $_.Groups[1].Value } | Select-Object -Unique\\) -join ',')",
+      "Bash(wsl.exe -e bash -lc 'cd /mnt/d/sem7/healthcare/neuroFlow && set -a && . <\\(tr -d '\\\\''\\\\r'\\\\'' < .env\\) && set +a && backend/.venv/bin/python -c \" *)"
+    ]
+  }
+}

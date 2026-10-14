@@ -1,0 +1,664 @@
+{
+  "schema": {
+    "age": {
+      "type": "numeric",
+      "min": 18.0,
+      "max": 80.0,
+      "median": 58.0
+    },
+    "high_bp": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 0.0
+    },
+    "chd_or_mi": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 0.0
+    },
+    "diabetes": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 0.0
+    },
+    "gen_health": {
+      "type": "numeric",
+      "min": 1.0,
+      "max": 5.0,
+      "median": 3.0
+    },
+    "kidney_disease": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 0.0
+    },
+    "high_chol": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 0.0
+    },
+    "smoker_status": {
+      "type": "categorical",
+      "min": 1.0,
+      "max": 4.0,
+      "median": 4.0
+    },
+    "bmi": {
+      "type": "numeric",
+      "min": 12.0,
+      "max": 70.0,
+      "median": 27.12
+    },
+    "phys_activity": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 1.0
+    },
+    "phys_days": {
+      "type": "numeric",
+      "min": 0.0,
+      "max": 30.0,
+      "median": 0.0
+    },
+    "ment_days": {
+      "type": "numeric",
+      "min": 0.0,
+      "max": 30.0,
+      "median": 0.0
+    },
+    "copd": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 0.0
+    },
+    "depression": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 0.0
+    },
+    "arthritis": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 0.0
+    },
+    "heavy_drink": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 0.0
+    },
+    "binge_drink": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 0.0
+    },
+    "is_female": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 1.0
+    },
+    "education": {
+      "type": "numeric",
+      "min": 1.0,
+      "max": 4.0,
+      "median": 3.0
+    },
+    "employment": {
+      "type": "categorical",
+      "min": 1.0,
+      "max": 8.0,
+      "median": 3.0
+    },
+    "marital": {
+      "type": "categorical",
+      "min": 1.0,
+      "max": 6.0,
+      "median": 1.0
+    },
+    "own_home": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 1.0
+    },
+    "veteran": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 0.0
+    },
+    "urban_rural": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 1.0
+    },
+    "has_insurance": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 1.0
+    },
+    "cost_barrier": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 0.0
+    },
+    "has_doctor": {
+      "type": "binary",
+      "min": 0.0,
+      "max": 1.0,
+      "median": 1.0
+    },
+    "last_checkup": {
+      "type": "numeric",
+      "min": 1.0,
+      "max": 5.0,
+      "median": 1.0
+    }
+  },
+  "model_A_threshold": 0.03284072130918503,
+  "model_B_threshold": 0.027838032692670822,
+  "meta": {
+    "train_years": [
+      2015,
+      2017,
+      2019
+    ],
+    "val_year": 2021,
+    "test_year": 2023,
+    "n_train": 1305790,
+    "n_test": 431849,
+    "train_prevalence": 0.04286294120800435,
+    "target_recall": 0.85,
+    "sklearn": "1.6.1",
+    "xgboost": "3.4.1",
+    "numpy": "2.1.3",
+    "suspect_features_removed_in_B": [
+      "gen_health",
+      "phys_activity",
+      "phys_days",
+      "ment_days",
+      "employment",
+      "has_doctor",
+      "last_checkup"
+    ]
+  },
+  "reference_bins": {
+    "age": {
+      "edges": [
+        null,
+        29.0,
+        38.0,
+        46.0,
+        53.0,
+        58.0,
+        63.0,
+        67.0,
+        72.0,
+        78.0,
+        null
+      ],
+      "expected": [
+        0.09622833686886866,
+        0.09910858560718033,
+        0.09452055843588938,
+        0.10584320602853445,
+        0.09472809563559224,
+        0.10910406726962223,
+        0.09267952733594223,
+        0.10646275434794263,
+        0.09556743427350493,
+        0.10575743419692293
+      ],
+      "n_bins": 10,
+      "n_train": 1305790,
+      "n_missing": 0
+    },
+    "high_bp": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.5954042608108492,
+        0.40459573918915076
+      ],
+      "n_bins": 2,
+      "n_train": 1301771,
+      "n_missing": 4019
+    },
+    "chd_or_mi": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.9120530357988552,
+        0.0879469642011448
+      ],
+      "n_bins": 2,
+      "n_train": 1294371,
+      "n_missing": 11419
+    },
+    "diabetes": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.86630664957851,
+        0.13369335042148997
+      ],
+      "n_bins": 2,
+      "n_train": 1303827,
+      "n_missing": 1963
+    },
+    "gen_health": {
+      "edges": [
+        null,
+        2.0,
+        3.0,
+        4.0,
+        null
+      ],
+      "expected": [
+        0.16591359815240367,
+        0.3268580957872439,
+        0.3162764914403558,
+        0.19095181461999663
+      ],
+      "n_bins": 4,
+      "n_train": 1302449,
+      "n_missing": 3341
+    },
+    "kidney_disease": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.9622326796381308,
+        0.03776732036186927
+      ],
+      "n_bins": 2,
+      "n_train": 1301575,
+      "n_missing": 4215
+    },
+    "high_chol": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.5997201072922047,
+        0.40027989270779535
+      ],
+      "n_bins": 2,
+      "n_train": 1140437,
+      "n_missing": 165353
+    },
+    "smoker_status": {
+      "edges": [
+        null,
+        3.0,
+        null
+      ],
+      "expected": [
+        0.1445084532699145,
+        0.8554915467300855
+      ],
+      "n_bins": 2,
+      "n_train": 1250522,
+      "n_missing": 55268
+    },
+    "bmi": {
+      "edges": [
+        null,
+        21.41,
+        23.11,
+        24.41,
+        25.8,
+        27.12,
+        28.41,
+        30.13,
+        32.35,
+        36.05,
+        null
+      ],
+      "expected": [
+        0.09953530681622463,
+        0.09961222616294528,
+        0.09346536706413903,
+        0.10505510602328649,
+        0.09546610615873144,
+        0.10673729869287275,
+        0.09850274819448555,
+        0.10159457150071317,
+        0.09989064075487979,
+        0.10014062863172188
+      ],
+      "n_bins": 10,
+      "n_train": 1196058,
+      "n_missing": 109732
+    },
+    "phys_activity": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.2710914495650818,
+        0.7289085504349182
+      ],
+      "n_bins": 2,
+      "n_train": 1212067,
+      "n_missing": 93723
+    },
+    "phys_days": {
+      "edges": [
+        null,
+        2.0,
+        5.0,
+        20.0,
+        null
+      ],
+      "expected": [
+        0.6702354319803985,
+        0.10916379974808715,
+        0.11470337575746183,
+        0.1058973925140526
+      ],
+      "n_bins": 4,
+      "n_train": 1276632,
+      "n_missing": 29158
+    },
+    "ment_days": {
+      "edges": [
+        null,
+        1.0,
+        4.0,
+        15.0,
+        null
+      ],
+      "expected": [
+        0.6755788362543784,
+        0.1111582338234182,
+        0.107096498565919,
+        0.10616643135628434
+      ],
+      "n_bins": 4,
+      "n_train": 1282703,
+      "n_missing": 23087
+    },
+    "copd": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.917092799641702,
+        0.08290720035829799
+      ],
+      "n_bins": 2,
+      "n_train": 1299477,
+      "n_missing": 6313
+    },
+    "depression": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.8069613922784556,
+        0.1930386077215443
+      ],
+      "n_bins": 2,
+      "n_train": 1299740,
+      "n_missing": 6050
+    },
+    "arthritis": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.6664214612037457,
+        0.33357853879625426
+      ],
+      "n_bins": 2,
+      "n_train": 1298231,
+      "n_missing": 7559
+    },
+    "heavy_drink": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.9430276323343949,
+        0.05697236766560508
+      ],
+      "n_bins": 2,
+      "n_train": 1222698,
+      "n_missing": 83092
+    },
+    "binge_drink": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.8706291848013167,
+        0.12937081519868326
+      ],
+      "n_bins": 2,
+      "n_train": 1223027,
+      "n_missing": 82763
+    },
+    "is_female": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.4394005430807,
+        0.5605994569193
+      ],
+      "n_bins": 2,
+      "n_train": 1305515,
+      "n_missing": 275
+    },
+    "education": {
+      "edges": [
+        null,
+        2.0,
+        3.0,
+        null
+      ],
+      "expected": [
+        0.07414486674006779,
+        0.27413625543588577,
+        0.6517188778240465
+      ],
+      "n_bins": 3,
+      "n_train": 1300616,
+      "n_missing": 5174
+    },
+    "employment": {
+      "edges": [
+        null,
+        3.0,
+        6.0,
+        7.0,
+        null
+      ],
+      "expected": [
+        0.49860837205846387,
+        0.097447237332161,
+        0.026726531951715617,
+        0.3772178586576595
+      ],
+      "n_bins": 4,
+      "n_train": 1292012,
+      "n_missing": 13778
+    },
+    "marital": {
+      "edges": [
+        null,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        null
+      ],
+      "expected": [
+        0.5230087758275939,
+        0.1361927287763213,
+        0.12425093806314647,
+        0.02075618998247303,
+        0.19579136735046532
+      ],
+      "n_bins": 5,
+      "n_train": 1296288,
+      "n_missing": 9502
+    },
+    "own_home": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.28567153450188115,
+        0.7143284654981188
+      ],
+      "n_bins": 2,
+      "n_train": 1296538,
+      "n_missing": 9252
+    },
+    "veteran": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.8707437117690613,
+        0.12925628823093868
+      ],
+      "n_bins": 2,
+      "n_train": 1301956,
+      "n_missing": 3834
+    },
+    "urban_rural": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.23680873683875914,
+        0.7631912631612409
+      ],
+      "n_bins": 2,
+      "n_train": 849369,
+      "n_missing": 456421
+    },
+    "has_insurance": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.07929864392596968,
+        0.9207013560740304
+      ],
+      "n_bins": 2,
+      "n_train": 1300224,
+      "n_missing": 5566
+    },
+    "cost_barrier": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.8966228508370111,
+        0.1033771491629889
+      ],
+      "n_bins": 2,
+      "n_train": 1302193,
+      "n_missing": 3597
+    },
+    "has_doctor": {
+      "edges": [
+        null,
+        0.5,
+        null
+      ],
+      "expected": [
+        0.1592707808612661,
+        0.8407292191387339
+      ],
+      "n_bins": 2,
+      "n_train": 1300295,
+      "n_missing": 5495
+    },
+    "last_checkup": {
+      "edges": [
+        null,
+        2.0,
+        3.0,
+        null
+      ],
+      "expected": [
+        0.7664021555933195,
+        0.10819074270707214,
+        0.1254071016996084
+      ],
+      "n_bins": 3,
+      "n_train": 1289297,
+      "n_missing": 16493
+    }
+  },
+  "reference_bins_meta": {
+    "source": "training years 2015, 2017, 2019",
+    "n_train_rows": 1305790,
+    "bins": 10,
+    "binary_rule": "features with <=2 unique values use 2 bins split at 0.5",
+    "epsilon": 1e-06,
+    "bands": {
+      "stable": "<0.1",
+      "moderate": "0.1-0.25",
+      "significant": ">0.25"
+    },
+    "note": "edges[0] and edges[-1] are null = -inf/+inf. Add epsilon to BOTH expected and actual proportions before the log."
+  }
+}
